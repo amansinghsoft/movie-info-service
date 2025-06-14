@@ -1,0 +1,30 @@
+spring:
+  application:
+    name : movies-info-service
+  profiles:
+    active: local
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: aman
+      
+  mongodb:
+    embedded:
+      version: "3.5.5"
+      
+  jpa:
+    show-sql: true
+    
+  redis:
+    host: localhost
+    port: 6379
+    # Expire Time in Minutes
+    cache-expire-time:
+      cache-manager:
+        movieinfo-configuration: 60   
+
+---
+logging:
+  level:
+    root: debug

@@ -14,7 +14,7 @@ public class MovieInfoCacheHandler {
 	private MovieInfoService movieInfoService;
 	
 	@Cacheable(value = MovieInfoRedisCacheConfig.MOVIE_INFO_CONFIGURATION_CACHE,
-			key = "#p0", cacheManager = MovieInfoRedisCacheConfig.MOVIE_INFO_CACHE_MANAGER)
+			key = "#root.methodName + '-' + #a0" , cacheManager = MovieInfoRedisCacheConfig.MOVIE_INFO_CACHE_MANAGER)
 	public MovieInfo getMovieInfoById( String id) {
 		System.err.println("In Handler: ");
 		return movieInfoService.getMovieInfoByIdOne(id);

@@ -29,7 +29,8 @@ public class MovieInfoRedisCacheConfig {
 		Map<String, RedisCacheConfiguration> cacheConfigurationMap = new HashMap<>();
 
 		cacheConfigurationMap.put(MOVIE_INFO_CONFIGURATION_CACHE,
-				RedisCacheConfiguration.defaultCacheConfig().disableCachingNullValues()
+				RedisCacheConfiguration.defaultCacheConfig(Thread.currentThread().getContextClassLoader())
+					.disableCachingNullValues()
 						.entryTtl(Duration.ofMinutes(Integer.parseInt(getMovieInfoCacheExpireTime))));
 
 		return RedisCacheManager.RedisCacheManagerBuilder.fromConnectionFactory(lettuceConnectionFactory)
